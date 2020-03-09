@@ -33,6 +33,9 @@
             <label style="text-align: left" for="firstName" class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name">
+                <span th:if="${#fields.hasErrors('firstName')}"
+                      th:errors="*{firstName}"
+                      class="alert alert-danger"></span>
             </div>
         </div>
         <div class="form-group row">
@@ -45,12 +48,18 @@
             <label style="text-align: left" for="lastName" class="col-sm-2 col-form-label">Last Name</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name">
+                <span th:if="${#fields.hasErrors('lastName')}"
+                      th:errors="*{lastName}"
+                      class="alert alert-danger"></span>
             </div>
         </div>
         <div class="form-group row">
             <label style="text-align: left" for="enrollmentDate" class="col-sm-2 col-form-label">Enrollment Date</label>
             <div class="col-sm-5">
                 <input class="form-control" type="date" name="enrollmentDate" id="enrollmentDate">
+                <span th:if="${#fields.hasErrors('enrollmentDate')}"
+                      th:errors="*{enrollmentDate}"
+                      class="alert alert-danger"></span>
             </div>
         </div>
         <div class="form-group row">
@@ -66,6 +75,9 @@
 <!--                <input id="isInternational" name="isInternational" type="radio" class="form-control"> &nbsp;&nbsp;&nbsp;-->
 <!--                <input name="isInternational" type="radio" class="form-control">-->
                                 <input id="isInternational" name="isInternational" type="checkbox" class="form-control" >
+                <span th:if="${#fields.hasErrors('isInternational')}"
+                      th:errors="*{isInternational}"
+                      class="alert alert-danger"></span>
             </div>
         </div>
         <div class="form-group row" style="text-align: right">
