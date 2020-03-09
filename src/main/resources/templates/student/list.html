@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>e-Registrar</title>
+    <link
+            href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cerulean/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-LV/SIoc08vbV9CCeAwiz7RJZMI5YntsH8rGov0Y2nysmepqMWVvJqds6y0RaxIXT"
+            crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div th:replace="fragment/header :: header"></div>
+<div class="container">
+    <h2>List Of Students</h2>
+    <a class="ui button primary" id="test" href="/student/new">Add New Student </a>
+<!--    <div class="col-sm-2">-->
+<!--        <input style="size: 20px;" > <button class="btn btn-primary">Search</button>-->
+<!--    <div>-->
+    <form>
+    <div class="form-group row">
+        <div class="col-sm-6">
+            <input class="form-control" type="text" name="search" id="search">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    </form>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student Number</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Middle Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Enrollment Date</th>
+                <th scope="col">CGPA</th>
+                <th scope="col">Is International</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student, iter : ${students}">
+                <th scope="row" th:text="${iter.count}"></th>
+                <td th:text="${student.studentNumber}"></td>
+                <td th:text="${student.firstName}"></td>
+                <td th:text="${student.middleName}"></td>
+                <td th:text="${student.lastName}"></td>
+                <td th:text="${student.enrollmentDate}"></td>
+                <td th:text="${student.cGpa}"></td>
+                <td ><input type="checkbox" disabled th:checked="${student.isInternational}"/></td>
+                <td><a th:href="@{/edit/{studentId}(studentId=${student.studentId})}">Edit</a>
+                    <a th:href="@{/delete/{studentId}(studentId=${student.studentId})}" onclick ="return confirm('Are you sure?')">Delete</a></td>
+            </tr>
+            <tr th:if="${studentCount < 1}">
+                <td colspan="9" style="text-align: center;">No list of students available</td>
+            </tr>
+            </tbody>
+        </table></div>
+</div>
+<div class="container" th:replace="fragment/footer :: footer"></div>
+</body>
+</html>
